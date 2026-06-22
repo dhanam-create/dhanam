@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <title>VR Fashion - Products</title>
+
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  <style>
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+    }
+
+    body{
+      min-height:100vh;
+      display:flex;
+      flex-direction:column;
+      background:linear-gradient(to right,#fdfbfb,#ebedee);
+      font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color:#333;
+    }
+
+    /* NAVBAR */
+
+    nav{
+      background-color:#5a0b53;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:20px 30px;
+      position:fixed;
+      top:0;
+      left:0;
+      right:0;
+      z-index:1000;
+    }
+
+    .brand{
+      font-size:24px;
+      font-weight:bold;
+      color:white;
+      text-decoration:none;
+    }
+
+    .brand:hover{
+      text-decoration:underline;
+    }
+
+    .nav-links{
+      display:flex;
+      gap:40px;
+    }
+
+    .nav-links a{
+      color:white;
+      text-decoration:none;
+      font-weight:bold;
+      font-size:16px;
+    }
+
+    .nav-links a:hover{
+      color:#ffd1ec;
+    }
+
+    .search input{
+      width:200px;
+      padding:8px 12px;
+      border:2px solid whitesmoke;
+      border-radius:10px;
+      outline:none;
+      font-size:14px;
+    }
+
+    .search input:focus{
+      border-color:#fbb5c8;
+      background:#fff;
+    }
+
+    .auth-buttons{
+      display:flex;
+      gap:20px;
+    }
+
+    .auth-buttons button{
+      padding:12px 24px;
+      font-size:16px;
+      border:none;
+      border-radius:50px;
+      font-weight:bold;
+      cursor:pointer;
+      transition:0.3s;
+    }
+
+    .login-btn{
+      background-color:white;
+      color:#5a0b53;
+    }
+
+    .login-btn:hover{
+      background-color:#ecd8e8;
+    }
+
+    .signup-btn{
+      background-color:#f5d3f5;
+      color:#5a0b53;
+    }
+
+    .signup-btn:hover{
+      background-color:#e4a6e0;
+    }
+
+    /* MAIN SECTION */
+
+    .products-section{
+      padding:130px 30px 50px;
+      width:100%;
+    }
+
+    .products-title{
+      text-align:center;
+      color:#5a0b53;
+      font-size:50px;
+      margin-bottom:40px;
+    }
+
+    /* PRODUCTS GRID */
+
+    .container{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+      gap:30px;
+      width:100%;
+    }
+
+    .product-card{
+      background:white;
+      border-radius:25px;
+      padding:20px;
+      text-align:center;
+      transition:0.4s;
+      box-shadow:0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    .product-card:hover{
+      transform:translateY(-10px);
+      box-shadow:0 8px 20px rgba(0,0,0,0.2);
+    }
+
+    .product-card img{
+      width:100%;
+      height:320px;
+      object-fit:cover;
+      border-radius:20px;
+      transition:0.4s;
+    }
+
+    .product-card img:hover{
+      transform:scale(1.05);
+    }
+
+    .product-card h2{
+      margin-top:15px;
+      color:#5a0b53;
+      font-size:28px;
+    }
+
+    .rating{
+      margin-top:8px;
+      font-size:18px;
+    }
+
+    .buy-button{
+      margin-top:15px;
+      padding:12px 24px;
+      background-color:#950e81;
+      color:white;
+      border:none;
+      border-radius:50px;
+      cursor:pointer;
+      font-weight:bold;
+      transition:0.3s;
+      font-size:16px;
+    }
+
+    .buy-button:hover{
+      background-color:#c236a5;
+    }
+
+    /* FOOTER */
+
+    footer{
+      background-color:#5a0b53;
+      color:#fff;
+      padding:40px 20px 20px;
+      margin-top:auto;
+    }
+
+    .footer-content{
+      display:flex;
+      flex-wrap:wrap;
+      justify-content:space-between;
+      gap:40px;
+      max-width:1200px;
+      margin:0 auto;
+    }
+
+    .footer-brand h2{
+      font-size:24px;
+      margin-bottom:10px;
+    }
+
+    .footer-brand p{
+      font-size:14px;
+      line-height:1.6;
+    }
+
+    .footer-nav h3,
+    .footer-social h3{
+      font-size:18px;
+      margin-bottom:10px;
+    }
+
+    .footer-nav ul{
+      list-style:none;
+    }
+
+    .footer-nav li{
+      margin-bottom:8px;
+    }
+
+    .footer-nav a{
+      color:#fff;
+      text-decoration:none;
+      font-size:14px;
+    }
+
+    .footer-nav a:hover{
+      text-decoration:underline;
+    }
+
+    .fa{
+      font-size:28px;
+      text-align:center;
+      margin:5px;
+      border-radius:10%;
+      display:inline-block;
+      transition:0.3s;
+    }
+
+    .fa:hover{
+      opacity:0.7;
+    }
+
+    .fa-facebook{
+      background:#3B5998;
+      color:white;
+      padding:12px 18px;
+    }
+
+    .fa-instagram{
+      background:#E1306C;
+      color:white;
+      padding:12px 18px;
+    }
+
+    .footer-bottom{
+      text-align:center;
+      margin-top:30px;
+      font-size:14px;
+      border-top:1px solid #fff;
+      padding-top:15px;
+    }
+
+    /* RESPONSIVE */
+
+    @media(max-width:900px){
+
+      nav{
+        flex-direction:column;
+        gap:20px;
+      }
+
+      .nav-links{
+        flex-wrap:wrap;
+        justify-content:center;
+        gap:20px;
+      }
+
+      .products-title{
+        font-size:38px;
+      }
+
+    }
+
+  </style>
+
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+
+  <nav>
+
+    <a href="home.html" class="brand">VR Fashion</a>
+
+    <div class="nav-links">
+      <a href="home.html">Home</a>
+      <a href="about.html">About Us</a>
+      <a href="choose.html">Why Choose Us</a>
+      <a href="products.html">Products</a>
+      <a href="contact.html">Contact Us</a>
+    </div>
+
+    <div class="search">
+      <input type="search" placeholder="Search here...🔍">
+    </div>
+
+    <div class="auth-buttons">
+      <button class="login-btn">Login</button>
+      <button class="signup-btn">Signup</button>
+    </div>
+
+  </nav>
+
+  <!-- PRODUCTS -->
+
+  <section class="products-section">
+
+    <h1 class="products-title">Our Products</h1>
+
+    <div class="container">
+
+      <!-- PRODUCT 1 -->
+      <div class="product-card">
+        <img src="d1.webp" alt="Product">
+        <h2>$200</h2>
+        <div class="rating">⭐⭐⭐⭐⭐</div>
+        <button class="buy-button">Buy Now</button>
+      </div>
+
+      <!-- PRODUCT 2 -->
+      <div class="product-card">
+        <img src="d1.webp" alt="Product">
+        <h2>$400</h2>
+        <div class="rating">⭐⭐⭐⭐⭐</div>
+        <button class="buy-button">Buy Now</button>
+      </div>
+
+      <!-- PRODUCT 3 -->
+      <div class="product-card">
+        <img src="d2.jpg" alt="Product">
+        <h2>$450</h2>
+        <div class="rating">⭐⭐⭐⭐⭐</div>
+        <button class="buy-button">Buy Now</button>
+      </div>
+
+      <!-- PRODUCT 4 -->
+      <div class="product-card">
+        <img src="d3.jpg" alt="Product">
+        <h2>$500</h2>
+        <div class="rating">⭐⭐⭐⭐⭐</div>
+        <button class="buy-button">Buy Now</button>
+      </div>
+
+      <!-- PRODUCT 5 -->
+      <div class="product-card">
+        <img src="d1.webp" alt="Product">
+        <h2>$200</h2>
+        <div class="rating">⭐⭐⭐⭐⭐</div>
+        <button class="buy-button">Buy Now</button>
+      </div>
+
+      <!-- PRODUCT 6 -->
+      <div class="product-card">
+        <img src="d1.webp" alt="Product">
+        <h2>$400</h2>
+        <div class="rating">⭐⭐⭐⭐⭐</div>
+        <button class="buy-button">Buy Now</button>
+      </div>
+
+      <!-- PRODUCT 7 -->
+      <div class="product-card">
+        <img src="d4.jpg" alt="Product">
+        <h2>$500</h2>
+        <div class="rating">⭐⭐⭐⭐⭐</div>
+        <button class="buy-button">Buy Now</button>
+      </div>
+
+      <!-- PRODUCT 8 -->
+      <div class="product-card">
+        <img src="d3.jpg" alt="Product">
+        <h2>$200</h2>
+        <div class="rating">⭐⭐⭐⭐⭐</div>
+        <button class="buy-button">Buy Now</button>
+      </div>
+
+      <!-- PRODUCT 9 -->
+      <div class="product-card">
+        <img src="d1.webp" alt="Product">
+        <h2>$400</h2>
+        <div class="rating">⭐⭐⭐⭐⭐</div>
+        <button class="buy-button">Buy Now</button>
+      </div>
+
+      <!-- PRODUCT 10 -->
+      <div class="product-card">
+        <img src="d2.jpg" alt="Product">
+        <h2>$450</h2>
+        <div class="rating">⭐⭐⭐⭐⭐</div>
+        <button class="buy-button">Buy Now</button>
+      </div>
+
+      <!-- PRODUCT 11 -->
+      <div class="product-card">
+        <img src="d3.jpg" alt="Product">
+        <h2>$500</h2>
+        <div class="rating">⭐⭐⭐⭐⭐</div>
+        <button class="buy-button">Buy Now</button>
+      </div>
+
+      <!-- PRODUCT 12 -->
+      <div class="product-card">
+        <img src="d4.jpg" alt="Product">
+        <h2>$400</h2>
+        <div class="rating">⭐⭐⭐⭐⭐</div>
+        <button class="buy-button">Buy Now</button>
+      </div>
+
+      <!-- PRODUCT 13 -->
+      <div class="product-card">
+        <img src="d5.jpg" alt="Product">
+        <h2>$450</h2>
+        <div class="rating">⭐⭐⭐⭐⭐</div>
+        <button class="buy-button">Buy Now</button>
+      </div>
+
+      <!-- PRODUCT 14 -->
+      <div class="product-card">
+        <img src="d2.jpg" alt="Product">
+        <h2>$500</h2>
+        <div class="rating">⭐⭐⭐⭐⭐</div>
+        <button class="buy-button">Buy Now</button>
+      </div>
+
+      <!-- PRODUCT 15 -->
+      <div class="product-card">
+        <img src="d1.webp" alt="Product">
+        <h2>$200</h2>
+        <div class="rating">⭐⭐⭐⭐⭐</div>
+        <button class="buy-button">Buy Now</button>
+      </div>
+
+      <!-- PRODUCT 16 -->
+      <div class="product-card">
+        <img src="d3.jpg" alt="Product">
+        <h2>$400</h2>
+        <div class="rating">⭐⭐⭐⭐⭐</div>
+        <button class="buy-button">Buy Now</button>
+      </div>
+
+      <!-- PRODUCT 17 -->
+      <div class="product-card">
+        <img src="d4.jpg" alt="Product">
+        <h2>$450</h2>
+        <div class="rating">⭐⭐⭐⭐⭐</div>
+        <button class="buy-button">Buy Now</button>
+      </div>
+
+      <!-- PRODUCT 18 -->
+      <div class="product-card">
+        <img src="d1.webp" alt="Product">
+        <h2>$500</h2>
+        <div class="rating">⭐⭐⭐⭐⭐</div>
+        <button class="buy-button">Buy Now</button>
+      </div>
+
+      <!-- PRODUCT 19 -->
+      <div class="product-card">
+        <img src="d4.jpg" alt="Product">
+        <h2>$200</h2>
+        <div class="rating">⭐⭐⭐⭐⭐</div>
+        <button class="buy-button">Buy Now</button>
+      </div>
+
+      <!-- PRODUCT 20 -->
+      <div class="product-card">
+        <img src="d4.jpg" alt="Product">
+        <h2>$200</h2>
+        <div class="rating">⭐⭐⭐⭐⭐</div>
+        <button class="buy-button">Buy Now</button>
+      </div>
+
+      <!-- PRODUCT 21 -->
+      <div class="product-card">
+        <img src="d4.jpg" alt="Product">
+        <h2>$200</h2>
+        <div class="rating">⭐⭐⭐⭐⭐</div>
+        <button class="buy-button">Buy Now</button>
+      </div>
+
+      <!-- PRODUCT 22 -->
+      <div class="product-card">
+        <img src="d4.jpg" alt="Product">
+        <h2>$200</h2>
+        <div class="rating">⭐⭐⭐⭐⭐</div>
+        <button class="buy-button">Buy Now</button>
+      </div>
+
+      <!-- PRODUCT 23 -->
+      <div class="product-card">
+        <img src="d4.jpg" alt="Product">
+        <h2>$200</h2>
+        <div class="rating">⭐⭐⭐⭐⭐</div>
+        <button class="buy-button">Buy Now</button>
+      </div>
+
+      <!-- PRODUCT 24 -->
+      <div class="product-card">
+        <img src="d1.webp" alt="Product">
+        <h2>$200</h2>
+        <div class="rating">⭐⭐⭐⭐⭐</div>
+        <button class="buy-button">Buy Now</button>
+      </div>
+
+      <!-- PRODUCT 25 -->
+      <div class="product-card">
+        <img src="d2.jpg" alt="Product">
+        <h2>$200</h2>
+        <div class="rating">⭐⭐⭐⭐☆</div>
+        <button class="buy-button">Buy Now</button>
+      </div>
+
+      <!-- PRODUCT 26 -->
+      <div class="product-card">
+        <img src="d1.webp" alt="Product">
+        <h2>$200</h2>
+        <div class="rating">⭐⭐⭐⭐⭐</div>
+        <button class="buy-button">Buy Now</button>
+      </div>
+
+      <!-- PRODUCT 27 -->
+      <div class="product-card">
+        <img src="d4.jpg" alt="Product">
+        <h2>$200</h2>
+        <div class="rating">⭐⭐⭐⭐⭐</div>
+        <button class="buy-button">Buy Now</button>
+      </div>
+
+      <!-- PRODUCT 28 -->
+      <div class="product-card">
+        <img src="d5.jpg" alt="Product">
+        <h2>$200</h2>
+        <div class="rating">⭐⭐⭐⭐⭐</div>
+        <button class="buy-button">Buy Now</button>
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- FOOTER -->
+
+  <footer>
+
+    <div class="footer-content">
+
+      <div class="footer-brand">
+
+        <h2 align="center">VR Fashion</h2>
+
+        <p align="center">
+          Style meets innovation.<br>
+          Explore the future of fashion with us!
+        </p>
+
+        <p align="center">
+
+          <a href="https://www.instagram.com/vr_fashion_official"
+             class="fa fa-instagram"
+             target="_blank"></a>
+
+          <a href="https://www.facebook.com/VRFashion"
+             class="fa fa-facebook"
+             target="_blank"></a>
+
+        </p>
+
+      </div>
+
+      <div class="footer-nav">
+
+        <h3>🔗 Navigation</h3>
+
+        <ul>
+          <li><a href="allsample.html">Home</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="products.html">Products</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
+        </ul>
+
+      </div>
+
+      <div class="footer-nav">
+
+        <h3>🛍️ Our Products</h3>
+
+        <ul>
+          <li>Kurthi Set</li>
+          <li>Maxi</li>
+          <li>Jeans</li>
+          <li>Shirt</li>
+        </ul>
+
+      </div>
+
+      <div class="footer-social">
+
+        <h3>📍 Contact Us</h3>
+
+        <p>
+          Location: 8A, Mudhaliyar East St,<br>
+          Tallakulam, Madurai-625002.<br><br>
+
+          📞 +91 9942031090<br>
+
+          ✉️
+          <a href="mailto:@vrfashion.com" style="color:white;">
+            @vrfashion.com
+          </a>
+        </p>
+
+      </div>
+
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy; 2025 VR Fashion. All rights reserved.</p>
+    </div>
+
+  </footer>
+
+</body>
+
+</html>
