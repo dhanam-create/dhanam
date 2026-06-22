@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dhanalakshmi Portfolio</title>
+
+  <style>
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:Arial, sans-serif;
+      scroll-behavior:smooth;
+    }
+
+    body{
+      background:#0f172a;
+      color:white;
+    }
+
+    /* NAVBAR */
+
+    nav{
+      background:#111827;
+      padding:18px 50px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      position:sticky;
+      top:0;
+      z-index:1000;
+      box-shadow:0 4px 10px rgba(0,0,0,0.4);
+    }
+
+    nav h1{
+      color:#38bdf8;
+      font-size:32px;
+    }
+
+    nav ul{
+      display:flex;
+      gap:30px;
+      list-style:none;
+    }
+
+    nav ul li a{
+      text-decoration:none;
+      color:white;
+      font-size:18px;
+    }
+
+    section{
+      padding:90px 60px;
+    }
+
+    /* HOME */
+
+    .home{
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      gap:80px;
+      min-height:100vh;
+      background:linear-gradient(to right,#0f172a,#1e293b);
+      flex-wrap:wrap;
+    }
+
+    .home img{
+      width:320px;
+      height:420px;
+      border-radius:25px;
+      object-fit:cover;
+      border:6px solid #38bdf8;
+      box-shadow:0 8px 20px rgba(0,0,0,0.5);
+    }
+
+    .home-content{
+      width:500px;
+    }
+
+    .home-content h2{
+      font-size:55px;
+      color:#38bdf8;
+      margin-bottom:20px;
+    }
+
+    .home-content h3{
+      font-size:30px;
+      margin-bottom:20px;
+      color:#facc15;
+    }
+
+    .home-content p{
+      font-size:20px;
+      line-height:35px;
+      color:#e2e8f0;
+    }
+
+    /* EDUCATION */
+
+    .education{
+      background:#111827;
+      text-align:center;
+    }
+
+    .education h2{
+      font-size:45px;
+      color:#38bdf8;
+      margin-bottom:60px;
+    }
+
+    .edu-container{
+      display:flex;
+      justify-content:center;
+      gap:40px;
+      flex-wrap:wrap;
+    }
+
+    .edu-box{
+      background:#1e293b;
+      width:350px;
+      padding:35px;
+      border-radius:25px;
+      box-shadow:0 5px 15px rgba(0,0,0,0.4);
+    }
+
+    .edu-box h3{
+      color:#facc15;
+      font-size:30px;
+      margin-bottom:20px;
+    }
+
+    .edu-box p{
+      font-size:18px;
+      line-height:30px;
+      color:#e2e8f0;
+    }
+
+    /* SKILLS */
+
+    .skills{
+      background:#0f172a;
+      text-align:center;
+    }
+
+    .skills h2{
+      font-size:45px;
+      color:#38bdf8;
+      margin-bottom:60px;
+    }
+
+    .skill-container{
+      display:flex;
+      justify-content:center;
+      flex-wrap:wrap;
+      gap:30px;
+    }
+
+    .skill-box{
+      background:#1e293b;
+      width:220px;
+      padding:30px;
+      border-radius:25px;
+      box-shadow:0 5px 15px rgba(0,0,0,0.4);
+    }
+
+    .skill-box img{
+      width:100px;
+      height:100px;
+      object-fit:contain;
+    }
+
+    .skill-box h3{
+      margin-top:20px;
+      color:#facc15;
+      font-size:25px;
+    }
+
+    /* PROJECTS */
+
+    .projects{
+      background:#111827;
+      text-align:center;
+    }
+
+    .projects h2{
+      font-size:45px;
+      color:#38bdf8;
+      margin-bottom:60px;
+    }
+
+    .project-container{
+      display:flex;
+      justify-content:center;
+      flex-wrap:wrap;
+      gap:35px;
+    }
+
+    .project-card{
+      background:#1e293b;
+      width:320px;
+      padding:25px;
+      border-radius:25px;
+      box-shadow:0 5px 15px rgba(0,0,0,0.4);
+    }
+
+    .project-card img{
+      width:100%;
+      height:220px;
+      border-radius:20px;
+      object-fit:cover;
+    }
+
+    .project-card h3{
+      margin-top:20px;
+      color:#facc15;
+      font-size:28px;
+    }
+
+    .project-card p{
+      margin:15px 0;
+      line-height:28px;
+      color:#e2e8f0;
+    }
+
+    .project-card button{
+      padding:12px 25px;
+      border:none;
+      border-radius:10px;
+      background:#38bdf8;
+      color:white;
+      font-size:16px;
+      cursor:pointer;
+    }
+
+    /* CONTACT */
+
+    .contact{
+      background:#0f172a;
+      text-align:center;
+    }
+
+    .contact h2{
+      font-size:45px;
+      color:#38bdf8;
+      margin-bottom:40px;
+    }
+
+    form{
+      width:70%;
+      margin:auto;
+      display:flex;
+      flex-direction:column;
+      gap:20px;
+    }
+
+    form input,
+    form textarea{
+      padding:16px;
+      border:none;
+      border-radius:12px;
+      font-size:17px;
+      background:#1e293b;
+      color:white;
+    }
+
+    form input::placeholder,
+    form textarea::placeholder{
+      color:#cbd5e1;
+    }
+
+    form button{
+      padding:16px;
+      border:none;
+      border-radius:12px;
+      background:#38bdf8;
+      color:white;
+      font-size:18px;
+      cursor:pointer;
+    }
+
+    /* FOOTER */
+
+    footer{
+      background:#111827;
+      color:white;
+      text-align:center;
+      padding:25px;
+      font-size:18px;
+    }
+
+  </style>
+
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+
+  <nav>
+
+    <h1>Dhanalakshmi</h1>
+
+    <ul>
+
+      <li><a href="#home">Home</a></li>
+
+      <li><a href="#education">Education</a></li>
+
+      <li><a href="#skills">Skills</a></li>
+
+      <li><a href="#projects">Projects</a></li>
+
+      <li><a href="#contact">Contact</a></li>
+
+    </ul>
+
+  </nav>
+
+  <!-- HOME -->
+
+  <section id="home" class="home">
+
+    <img src="d.jpeg" alt="Profile Image">
+
+    <div class="home-content">
+
+      <h2>Hello, I'm Dhanalakshmi</h2>
+
+      <h3>Frontend Developer</h3>
+
+      <p>
+        Passionate web developer with creativity and modern design skills.
+        I love building responsive websites using HTML, CSS, JavaScript, and React.
+      </p>
+
+    </div>
+
+  </section>
+
+  <!-- EDUCATION -->
+
+  <section id="education" class="education">
+
+    <h2>My Education</h2>
+
+    <div class="edu-container">
+
+      <div class="edu-box">
+
+        <h3>School</h3>
+
+        <p>
+          Completed schooling at OCPM School with strong academic performance and leadership skills.
+        </p>
+
+      </div>
+
+      <div class="edu-box">
+
+        <h3>College</h3>
+
+        <p>
+          Pursuing college studies at Lady Doak College with passion for technology and web development.
+        </p>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- SKILLS -->
+
+  <section id="skills" class="skills">
+
+    <h2>My Skills</h2>
+
+    <div class="skill-container">
+
+      <div class="skill-box">
+
+        <img src="html.webp" alt="HTML">
+
+        <h3>HTML</h3>
+
+      </div>
+
+      <div class="skill-box">
+
+        <img src="css.webp" alt="CSS">
+
+        <h3>CSS</h3>
+
+      </div>
+
+      <div class="skill-box">
+
+        <img src="javascript.webp" alt="JavaScript">
+
+        <h3>JavaScript</h3>
+
+      </div>
+
+      <div class="skill-box">
+
+        <img src="react.webp" alt="React">
+
+        <h3>React</h3>
+
+      </div>
+
+      <div class="skill-box">
+
+        <img src="bootstrap.webp" alt="Bootstrap">
+
+        <h3>Bootstrap</h3>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- PROJECTS -->
+
+  <section id="projects" class="projects">
+
+    <h2>My Projects</h2>
+
+    <div class="project-container">
+
+      <div class="project-card">
+
+        <img src="woods.png" alt="Furniture Website">
+
+        <h3>Furniture Website</h3>
+
+        <p>
+          Modern and responsive furniture website using HTML and CSS.
+        </p>
+
+        <button>View Project</button>
+
+      </div>
+
+      <div class="project-card">
+
+        <img src="s1.png" alt="Fashion Website">
+
+        <h3>VR Fashion</h3>
+
+        <p>
+          Stylish fashion shopping website developed using React.
+        </p>
+
+        <button>View Project</button>
+
+      </div>
+
+      <div class="project-card">
+
+       <img src="plant.jpeg" alt="Plant Website">
+
+<h3>Plant Website</h3>
+
+<p>
+  A beautiful plant website featuring different plants, gardening guides, and an easy-to-use shopping experience.
+</p>
+
+<button>View Project</button>
+
+    </div>
+
+  </section>
+
+  <!-- CONTACT -->
+
+  <section id="contact" class="contact">
+
+    <h2>Contact For Projects</h2>
+
+    <form>
+
+      <input type="text" placeholder="Enter Your Name">
+
+      <input type="email" placeholder="Enter Your Email">
+
+      <input type="number" placeholder="Enter Your Contact Number">
+
+      <textarea rows="5" placeholder="Enter Project Details"></textarea>
+
+      <button type="submit">Submit</button>
+
+    </form>
+
+  </section>
+
+  <!-- FOOTER -->
+
+  <footer>
+
+    <p>© 2026 Dhanalakshmi Portfolio | All Rights Reserved</p>
+
+  </footer>
+
+</body>
+</html>
